@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Админ-панель страница для администраторов проекта Fast delivery service.">
+
+    <link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
+
+    <link rel="apple-touch-icon" href="../images/favicon.png" sizes="180x180">
+
+    <title>Админ-панель | Fast delivery service</title>
+
+    <!-- кроссбраузерность css/normalize.css -->
+    <link rel="stylesheet" href="../css/normalize.css">
+
+    <!-- общие стили css/style.css -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
+</head>
+<body>
+    <!-- header -->
+    <header class="header">
+        <nav class="header__navbar">
+
+            <!-- Элемент логотипа -->
+            <h1 class="header__logo">Fast delivery service</h1>
+
+            <!-- Навигация сайта в шапке веб-приложения -->
+            <ul id="header__links__nav" class="header__links-nav">
+                <li class="header__nav-item">
+                    <a href="../index.html" class="header__nav-link">Главная</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="auth.html" class="header__nav-link">Авторизация</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="cart.html" class="header__nav-link">Корзина</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="admin.html" class="header__nav-link">Админ-панель</a>
+                </li>
+            </ul>
+
+            <!-- hamburger-menu под мобильные устройства -->
+            <!-- <button id="hamburger-menu" class="header__hamburger">☰</button> -->
+
+        </nav>
+    </header>
+
+    <!-- Панель администратора и Форма добавление доставки еды -->
+    <main class="main__page-content">
+        <section id="main__admin-controls" class="hidden">
+        <h3>Панель администратора</h3>
+        
+        </section>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer__navbar">
+
+        <!-- Элемент логотипа текстом -->
+        <p class="footer__paragraph">&copy; 2026 Сервис доставки еды</p>
+
+        <ul id="footer__links-nav" class="footer__links-nav">
+            <li class="footer__nav-item">
+                <a href="../index.html" class="footer__nav-link">Главная</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="auth.html" class="footer__nav-link">Авторизация</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="cart.html" class="footer__nav-link">Корзина</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="admin.html" class="footer__nav-link">Админ-панель</a>
+            </li>
+        </ul>
+
+        </nav>
+    </footer>
+</body>
+</html>

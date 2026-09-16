@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Страница авторизации проекта Fast delivery service сервиса доставки еды.">
+
+    <link rel="icon" href="../images/favicon.png" type="image/png" sizes="32x32">
+
+    <link rel="apple-touch-icon" href="../images/favicon.png" sizes="180x180">
+
+    <title>Авторизация | Fast delivery service</title>
+
+    <!-- кроссбраузерность css/normalize.css -->
+    <link rel="stylesheet" href="../css/normalize.css">
+
+    <!-- общие стили css/style.css -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- стили авторизации css/auth.css -->
+    <link rel="stylesheet" href="../css/auth.css">
+
+    <!-- подключение шрифтов -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<body>
+    <!-- header -->
+    <header class="header">
+        <nav class="header__navbar">
+
+            <!-- Элемент логотипа -->
+            <h1 class="header__logo">Fast delivery service</h1>
+
+            <!-- Навигация сайта шапка веб-приложения -->
+            <ul id="header__links-nav" class="header__links-nav">
+                <li class="header__nav-item">
+                    <a href="../index.html" class="header__nav-link">Главная</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="auth.html" class="header__nav-link">Авторизация</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="cart.html" class="header__nav-link">Корзина</a>
+                </li>
+                <li class="header__nav-item">
+                    <a href="admin.html" class="header__nav-link">Админ-панель</a>
+                </li>
+            </ul>
+        
+            <!-- hamburger-menu под мобильные устройства -->
+            <!-- <button id="hamburger-menu" class="header_hamburger">☰</button> -->
+
+        </nav>
+    </header>
+
+    <section id="section__auth-controls" class="section__auth-controls">
+            <span id="section__welcome-message" class="section__welcome-message hidden"></span>
+            <button id="section__show-auth" class="section__show-auth">Войти / Регистрация</button>
+            <button id="section__logout-btn" class="section__logout-btn hidden">
+                Выйти
+            </button>
+    </section>
+
+    <section id="section__user-profile" class="section__user-profile hidden">
+            <h3>Личный кабинет</h3>
+            <p><strong>Email:</strong> <span id="section__user-email"></span></p>
+            <p><strong>ID:</strong> <span id="section__user-id"></span></p>
+            <p><strong>Дата регистрации:</strong> <span id="section__user-created"></span></p>
+            <p><strong>Роль:</strong> <span id="section__user-role"></span></p>
+    </section> 
+ 
+    <!-- Формы аутенфикации (изначально скрыты) -->
+    <main class="main__page-content">
+        <form id="form__auth-container" class="form__auth hidden">
+            <h3 id="form__auth-title">Вход в систему</h3>
+
+            <label for="form__auth-name">Ваше имя:</label>
+            <input 
+                type="text"
+                id="form__auth-name"
+                placeholder="Ваше имя:"
+            />
+
+            <label for="form__auth-email">Ваш email:</label>
+            <input 
+                type="email"
+                id="form__auth-email"
+                placeholder="Ваш email:"
+            />
+
+            <label for="form__auth-phone">Ваш номер телефона:</label>
+            <input 
+                type="text"
+                id="form__auth-phone"
+                placeholder="Ваш номер телефона:"
+            />
+
+            <label for="form__auth-password">Пароль (6 символов):</label>
+            <input 
+                type="password"
+                id="form__auth-password"
+                placeholder="Пароль (минимум 6 символов):"
+            />
+
+            <!-- Скрыть сообщение -->
+            <div id="form__auth-error" class="error hidden"></div>
+            <div id="form__auth-success" class="success hidden"></div>
+
+            <div class="form__buttons">
+                <button id="form__signin-btn" type="button">Войти</button>
+                <button id="form__signup-btn" type="button">Зарегистрироваться</button>
+                <button id="form__cancel-btn" type="button">Отмена</button>
+            </div>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <nav class="footer__navbar">
+
+        <!-- Элемент логотипа текстом -->
+        <p class="footer__paragraph">&copy; 2026 Сервис доставки еды</p>
+
+        <ul id="footer__links-nav" class="footer__links-nav">
+            <li class="footer__nav-item">
+                <a href="../index.html" class="footer__nav-link">Главная</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="auth.html" class="footer__nav-link">Авторизация</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="cart.html" class="footer__nav-link">Корзина</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="admin.html" class="footer__nav-link">Админ-панель</a>
+            </li>
+        </ul>
+        
+        </nav>
+    </footer>  
+
+    <!-- подключение модулей в HTML логика Firebase (Firestore) -->
+    <script type="module" src="../js/firestore.js" defer></script>
+
+    <!-- подключение модулей в HTML логика авторизации страницы -->
+    <script type="module" src="../js/auth.js" defer></script>
+</body>
+</html>
