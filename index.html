@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Добро пожаловать Fast delivery service.">
 
-    <link rel="icon" href="images/favicon.png" type="image/png" sizes="32/32">
+    <link rel="icon" href="images/favicon.png" type="image/png" sizes="32x32">
 
     <link rel="apple-touch-icon" href="images/favicon.png" sizes="180x180">
 
@@ -18,8 +19,8 @@
 
     <!-- подключение шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts  .gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">   
 </head>
 <body>
     <!-- header -->
@@ -27,29 +28,40 @@
        <nav class="header__navbar">
 
         <!-- Элемент логотипа -->
-        <div class="header__logo">Fast delivery service</div>
-       
-        <!-- Навигация сайта в шапке веб-приложения -->
-        <ul id="nav-links" class="header-nav">
-            <li class="header-nav__item">
-                <a href="index.html" class="header-nav__link">Главная</a>
-            </li>
-            <li class="header-nav__item">
-                <a href="cart.html" class="header-nav__link">Функциональная</a>
-            </li>
-            <li class="header-nav__item">
-                <a href="admin.html" class="header-nav__link">Админ-панель</a>
-            </li>
-        </ul>       
+        <h1 class="header__logo">Fast delivery service</h1>
 
+        <!-- Навигация сайта в шапке веб-приложения -->
+        <ul id="header__links-nav" class="header__links-nav">
+            <li class="header__nav-item">
+                <a href="index.html" class="header__nav-link">Главная</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="pages/auth.html" class="header__nav-link">Авторизация</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="pages/cart.html" class="header__nav-link">Корзина</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="pages/admin.html" class="header__nav-link">Админ-панель</a>
+            </li>
+        </ul>
+        
         <!-- hamburger-menu под мобильные устройства -->
-        <button id="hamburger-menu" class="header_hamburger">☰</button>
+        <!-- <button id="hamburger-menu" class="header_hamburger">☰</button> -->
 
        </nav>
+
     </header>
 
-    <main>
+    <main class="main__page-content">
 
+       <div class="main__output">Загрузка еды...</div>
+
+       <!-- Подключение Firebase SDK через CDN -->
+       <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-app-compat.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore-compat.js"></script>
+       <!-- ДОБАВЛЕНО: Firebase Authentication -->
+       <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-auth-compat.js"></script>
     </main>
 
     <footer class="footer">
@@ -58,19 +70,31 @@
         <!-- Элемент логотипа текстом -->
         <p class="footer__paragraph">&copy; 2026 Сервис доставки еды</p>
 
-        <ul id="nav-links" class="footer-nav">
-            <li class="footer-nav__item">
-                <a href="index.html" class="footer-nav__link">Главная</a>
+        <ul id="footer__links-nav" class="footer__links-nav">
+            <li class="footer__nav-item">
+                <a href="index.html" class="footer__nav-link">Главная</a>
             </li>
-            <li class="footer-nav__item">
-                <a href="cart.html" class="footer-nav__link">Функциональная</a>
+            <li class="footer__nav-item">
+                <a href="pages/auth.html" class="footer__nav-link">Авторизация</a>
             </li>
-            <li class="footer-nav__item">
-                <a href="admin.html" class="footer-nav__link">Админ-панель</a>
+            <li class="footer__nav-item">
+                <a href="pages/cart.html" class="footer__nav-link">Корзина</a>
+            </li>
+            <li class="footer__nav-item">
+                <a href="pages/admin.html" class="footer__nav-link">Админ-панель</a>
             </li>
         </ul>
         
         </nav>
-    </footer>   
+    </footer>
+
+    <!-- подключение модулей в HTML логика главной страницы -->
+    <script type="module" src="js/main.js"></script>
+
+    <!-- подключение модулей в HTML Firebase (Firestore) -->
+    <script type="module" src="js/firestore.js"></script>
+
+    <!-- подключение модулей в HTML каталог логика главной страницы и админ-панели -->
+    <script type="module" src="js/catalog.js"></script>
 </body>
 </html>
