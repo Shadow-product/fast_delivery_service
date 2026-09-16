@@ -1,0 +1,115 @@
+      * { box-sizing: border-box; } /* стабилизирует (предотвращает выползание блоков) */
+      
+      html, body {
+        display: flex;
+        background: #F4F5F9;
+        flex-direction: column;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Стили для аутентификации */
+      .hidden {
+        display: none;
+      }
+      
+      /* Шапка */
+      .header {
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+      }
+
+      .header__navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header__logo {
+        font-family: "Inter", "sans-serif";
+        font-size: 20px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      /* навигация шапки  */
+      .header__links-nav {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+      }
+
+      /* навигация шапки ссылки */
+       .header__links-nav li a {
+        text-decoration: none;
+      }
+
+      /* навигация шапки ссылки эффект наведения hover*/
+      .header__links-nav li a:hover {
+        text-decoration: underline;
+        color: orange;
+      }
+
+      .header__nav-link {
+        font-family: "Inter", "sans-serif";
+        font-size: 16px;
+        font-weight: 300;
+        color: #000000;
+      }
+
+      .main__page-content {
+        flex: 1;
+      }
+
+      .main__output {
+        color: #000000;
+      }
+
+      /* Подвал */
+      .footer {
+        margin: 0;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        margin-top: 20px;
+      }
+
+      .footer__navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer__paragraph {
+        font-family: "Inter", "sans-serif";
+        font-size: 18px;
+        font-weight: 500;
+        color: #000000;
+      }
+
+      /* навигация подвала */
+      .footer__links-nav {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+      }
+
+      /* навигация подвала ссылки */
+      .footer__links-nav li a {
+        text-decoration: none;
+      }
+
+      /* навигация подвала ссылки эффект наведения hover */
+      .footer__links-nav li a:hover {
+        text-decoration: underline;
+        color: orange;
+      }
+
+      .footer__nav-link {
+        font-family: "Inter", "sans-serif";
+        font-size: 16px;
+        font-weight: 300;
+        color: #000000;
+      }

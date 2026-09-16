@@ -1,0 +1,87 @@
+.section__auth-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+}
+
+.section__welcome-message {
+    font-family: "Inter", "sans-serif";
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.section__show-auth {
+    font-family: "Montserrat", "sans-serif";
+    font-size: 12px;
+    font-weight: 300;
+    background: orange;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.section__logout-btn {
+    font-family: "Montserrat", "sans-serif";
+    font-size: 12px;
+    font-weight: 300;
+    background: orange;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.section__user-profile {
+    font-family: "Inter", "sans-serif";
+    font-size: 16px;
+    font-weight: 300;
+    background: darkgrey;
+    color: black;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.section__user-profile h3 {
+    font-family: "Inter", "sans-serif";
+    font-size: 18px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+
+.form__auth {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form__auth input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form__auth button {
+    font-family: "Montserrat", "sans-serif";
+    font-size: 11px;
+    font-weight: 300;
+    background: orange;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
