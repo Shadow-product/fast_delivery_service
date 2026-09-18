@@ -18,6 +18,10 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
+import {
+  loadMenuItems,
+} from "./main.js";
+
 /* Переменные для UI */
 const welcomeMessage = document.querySelector("#section__welcome-message");
 const showAuthBtn = document.querySelector("#section__show-auth");
@@ -65,13 +69,16 @@ onAuthStateChanged(auth, async (user) => {
             const userData = userDocSnap.data();
             updateUserProfileUI(user, userData);
         }
-      } catch (error) {
-          console.error("Ошибка загрузки профиля:", error);
+      } catch (errorLoadProfile) {
+          console.error("Ошибка загрузки профиля:", errorLoadProfile);
       }
     } else {
         // Пользователь вышел или не авторизован
         updateUIForGuest();
     }
+
+    // Всегда загружаются меню еды (и для гостей тоже)
+    loadMenuItems();
   });
 
 /* Обновление интерфейса */
