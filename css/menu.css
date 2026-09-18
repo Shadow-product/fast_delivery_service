@@ -1,0 +1,35 @@
+/* Загрузка меню еды */
+.main__output {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 10px;
+        margin: 15px;
+        color: #000000;
+}
+
+/* Блок меню еды  */
+.menu__item {
+    
+}
+
+/* Блок меню еды заголовок название */
+.menu__item-h3 {
+    margin: 0 0 10px 0;
+}
+
+/* Блок меню еды описание */
+.menu__item-desc, .menu__items-category,
+.menu__item-weight, .menu__item-restaurantid,
+.menu_item-rating, .menu__item-reviewcount,
+.menu__item-cookingtime, .menu__item-instock,
+.menu__item-createdat {
+    margin: 5px 0;
+}
+
+/* Блок меню еды изображение блюда */
+.menu__item-img {
+    max-width: 200px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
