@@ -35,6 +35,20 @@
         color: #000000;
       }
 
+      /* В шапке заголовок кликабельный на главную страницу */
+      .header__logo-link {
+        font-family: "Inter", "sans-serif";
+        font-size: 16px;
+        font-weight: 300;
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .header__logo-link:hover {
+        text-decoration: underline;
+        color: orange;
+      }
+
       /* навигация шапки  */
       .header__links-nav {
         display: flex;
