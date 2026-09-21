@@ -58,7 +58,7 @@ export async function loadMenuItems() {
         } catch(errorMenuItems) {
             console.error("Ошибка загрузки меню еды:", errorMenuItems);
             mainOutput.innerHTML = 
-                `<p style="color: red";>Ошибка загрузки меню еды</p>`
+                `<p>Ошибка загрузки меню еды</p>`
         }
     }
 }
