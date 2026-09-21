@@ -22,7 +22,7 @@
 /* Блок меню еды описание */
 .menu__item-desc, .menu__items-category,
 .menu__item-weight, .menu__item-restaurantid,
-.menu_item-rating, .menu__item-reviewcount,
+.menu__item-rating, .menu__item-reviewcount,
 .menu__item-cookingtime, .menu__item-instock,
 .menu__item-createdat {
     margin: 5px 0;
