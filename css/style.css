@@ -78,8 +78,60 @@
         flex: 1;
       }
 
+      /* Поиск на главной странице */
+      .section__search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+      }
+
+      .input__search {
+        text-align: left;
+        width: 50%;
+        max-width: 400px;
+        min-width: 250px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #000000;
+      }
+
+      /* Цвет текста в плейсхолдере */
+      .input__search::placeholder {
+        color: #000000;
+        opacity: 1;
+      }
+
+      /* Рамка при фокусе */
+      .input__search:focus {
+        border: 1px solid #ddd;
+        outline: none; /* внешняя рамка */
+      }
+
       .main__output {
         color: #000000;
+      }
+
+      /* Пагинация на главной странице */
+      .section__pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .button__next-page,
+      .button__prev-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: #ddd;
+        font-family: "Monsterrat", "sans-serif";
+        color: black;
+        border-radius: 5px;
       }
 
       /* Подвал */

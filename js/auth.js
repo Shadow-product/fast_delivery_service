@@ -18,10 +18,6 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
-import {
-  loadMenuItems,
-} from "./main.js";
-
 /* Переменные для UI */
 const welcomeMessage = document.querySelector("#section__welcome-message");
 const showAuthBtn = document.querySelector("#section__show-auth");
@@ -76,9 +72,6 @@ onAuthStateChanged(auth, async (user) => {
         // Пользователь вышел или не авторизован
         updateUIForGuest();
     }
-
-    // Всегда загружаются меню еды (и для гостей тоже)
-    loadMenuItems();
   });
 
 /* Обновление интерфейса */
@@ -111,7 +104,6 @@ function updateUIForGuest() {
   // Очищаем поля формы
   document.querySelector("#form__auth-name").value = "";
   document.querySelector("#form__auth-email").value = "";
-  document.querySelector("#form__auth-phone").value = "";
   document.querySelector("#form__auth-password").value = "";
   hideMessages();
 }
@@ -132,7 +124,7 @@ function updateUserProfileUI(user, userData) {
 }
 
 /* Регистрация пользователя */
-export async function registerUser(name, email, phone, password) {
+export async function registerUser(name, email, password) {
     try {
         // Создаётся пользователь
         const userCredential = await createUserWithEmailAndPassword(
@@ -147,7 +139,6 @@ export async function registerUser(name, email, phone, password) {
             uid: user.uid,
             email: user.email,
             name,
-            phone,
             isActive: true,
             intercom: null,
             favoriteRestaurants: [],
@@ -164,7 +155,6 @@ export async function registerUser(name, email, phone, password) {
     // Очищается поля формы
     document.querySelector("#form__auth-name").value = "";
     document.querySelector("#form__auth-email").value = "";
-    document.querySelector("#form__auth-phone").value = "";
     document.querySelector("#form__auth-password").value = "";
     } catch (error) {
         console.error("Ошибка регистрации:", error.message);
@@ -207,7 +197,6 @@ export async function loginUser(email, password) {
         // Очищаем поля формы
           document.querySelector("#form__auth-name").value = "";
           document.querySelector("#form__auth-email").value = "";
-          document.querySelector("#form__auth-phone").value = "";
           document.querySelector("#form__auth-password").value = "";
         } catch (error) {
           console.error("Ошибка входа:", error.code);
@@ -264,11 +253,12 @@ document
 
   // Кнопка "Войти"
   document.querySelector("#form__signin-btn").addEventListener("click", () => {
+    const name = document.querySelector("#form__auth-name").value;
     const email = document.querySelector("#form__auth-email").value;
     const password = document.querySelector("#form__auth-password").value;
 
-  if (!email || !password) {
-      showError("Введите email и пароль");
+  if (!name || !email || !password) {
+      showError("Введите имя, email и пароль");
       return;
   }
 
@@ -280,7 +270,6 @@ document
       e.preventDefault(); // отмена стандартного поведения
       const name = document.querySelector("#form__auth-name").value;
       const email = document.querySelector("#form__auth-email").value;
-      const phone = document.querySelector("#form__auth-phone").value;
       const password = document.querySelector("#form__auth-password").value;
 
   const nameRegex = /^[A-Za-zA-Яа-яЁё\s]{2,}$/;
@@ -289,8 +278,8 @@ document
     return;
   } 
 
-  if (!name || !email || !phone || !password) {
-      showError("Введите имя пользователя, email, номер телефона и пароль");
+  if (!name || !email || !password) {
+      showError("Введите имя пользователя, email и пароль");
       return;
   }
 
@@ -299,26 +288,20 @@ document
       return;
   }
 
-  const phoneRegex = /^\+7\d{10}$/;
-  if (!phoneRegex.test(phone)) {
-    showError("Введите номер телефона в формате +7XXXXXXXXXX");
-    return;
-  }
-
-  registerUser(name, email, phone, password);
+  registerUser(name, email, password);
   });
 
   // Кнопка "Выйти"
-  logoutAuthBtn.addEventListener("click", (e) => {
-      e.preventDefault(); // отмена стандартного поведения
+  logoutAuthBtn.addEventListener("click", (event) => {
+      event.preventDefault(); // отмена стандартного поведения
       logoutUser();
   });
 
   // Нажатие Enter в полях формы
   document
       .querySelector("#form__auth-password")
-      .addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
+      .addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
           const email = document.querySelector("#form__auth-email").value;
           const password = document.querySelector("#form__auth-password").value;
           loginUser(email, password);

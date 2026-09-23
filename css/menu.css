@@ -1,7 +1,7 @@
 /* Загрузка меню еды */
 .main__output {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         padding: 10px;
         margin: 15px;
@@ -24,7 +24,7 @@
 .menu__item-weight, .menu__item-restaurantid,
 .menu__item-rating, .menu__item-reviewcount,
 .menu__item-cookingtime, .menu__item-instock,
-.menu__item-createdat {
+.menu__item-price, .menu__item-createdat {
     margin: 5px 0;
 }
 
@@ -33,4 +33,17 @@
     max-width: 200px;
     border-radius: 8px;
     margin: 15px 0;
+}
+
+/* Блок меню еды кнопка добавить в корзину */
+.menu__item-add {
+    font-family: "Montserrat", "sans-serif";
+    font-size: 12px;
+    font-weight: 300;
+    background: #ddd;
+    color: #000000;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }

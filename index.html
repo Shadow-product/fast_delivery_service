@@ -60,7 +60,23 @@
 
     <main class="main__page-content">
 
+       <!-- Поиск -->
+       <section class="section__search-container">
+        <input
+            type="text"
+            id="input__search"
+            class="input__search"
+            placeholder="Нажмите Enter для поиска по всему меню:" 
+        />
+       </section> 
+
        <div class="main__output">Загрузка меню еды...</div>
+
+       <!-- Пагинация -->
+       <section class="section__pagination-container">
+        <button id="button__prev-page" class="button__prev-page">←</button>
+        <button id="button__next-page" class="button__next-page">→</button>
+       </section>
 
        <!-- Подключение Firebase SDK через CDN -->
        <script src="https://www.gstatic.com/firebasejs/12.8.0/firebase-app-compat.js"></script>
@@ -96,10 +112,10 @@
     <!-- подключение модулей в HTML логика главной страницы -->
     <script type="module" src="js/main.js"></script>
 
-    <!-- подключение модулей в HTML Firebase (Firestore) -->
-    <script type="module" src="js/firestore.js"></script>
-
     <!-- подключение модулей в HTML каталог логика главной страницы и админ-панели -->
     <script type="module" src="js/catalog.js"></script>
+
+    <!-- подключение модулей в HTML Firebase (Firestore) -->
+    <script type="module" src="js/firestore.js"></script>
 </body>
 </html>

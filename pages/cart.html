@@ -55,7 +55,12 @@
 
     </header>
 
-    <main class="main__page-content"></main>
+    <main class="main__page-content">
+        <section id="section__cart-container" class="section__cart-container">
+            <h3>Моя корзина</h3>
+            <section id="section__cart-items"></section>
+        </section>
+    </main>
 
     <footer class="footer">
         <nav class="footer__navbar">
@@ -80,5 +85,8 @@
 
         </nav>
     </footer>
+
+    <!-- подключение модулей в HTML логика корзины страницы -->
+    <script type="module" src="../js/cart.js"></script>
 </body>
 </html>
