@@ -4,6 +4,7 @@ import {
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut,
+    onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 import {
@@ -13,10 +14,6 @@ import {
      updateDoc,
      serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
-
-import { 
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js"
 
 /* Переменные для UI */
 const welcomeMessage = document.querySelector("#section__welcome-message");
@@ -61,8 +58,24 @@ onAuthStateChanged(auth, async (user) => {
         const userDocRef = doc(db, "users", user.uid);
         const userDocSnap = await getDoc(userDocRef);
 
-        if (userDocSnap.exists) {
+        if (userDocSnap.exists()) {
             const userData = userDocSnap.data();
+
+            const headerAdminItem = document.querySelector("#header__admin-item");
+
+            const footerAdminItem = document.querySelector("#footer__admin-item");
+
+            if (userData.role === "admin") {
+
+              if (headerAdminItem) {
+                headerAdminItem.classList.remove("hidden");
+              }
+
+              if (footerAdminItem) {
+                footerAdminItem.classList.remove("hidden");
+              }
+
+            }
             updateUserProfileUI(user, userData);
         }
       } catch (errorLoadProfile) {
@@ -75,7 +88,7 @@ onAuthStateChanged(auth, async (user) => {
   });
 
 /* Обновление интерфейса */
-async function updateUIForLoggedInUser(user) {
+function updateUIForLoggedInUser(user) {
   // Обновление шапки
   welcomeMessage.textContent = `Привет, ${user.email.split("@")[0]}!`;
   welcomeMessage.classList.remove("hidden");
@@ -106,6 +119,18 @@ function updateUIForGuest() {
   document.querySelector("#form__auth-email").value = "";
   document.querySelector("#form__auth-password").value = "";
   hideMessages();
+
+  const headerAdminItem = document.querySelector("#header__admin-item");
+
+  const footerAdminItem = document.querySelector("#footer__admin-item");
+
+  if (headerAdminItem) {
+    headerAdminItem.classList.add("hidden");
+  }
+
+  if (footerAdminItem) {
+    footerAdminItem.classList.add("hidden");
+  }
 }
 
 function updateUserProfileUI(user, userData) {
@@ -160,7 +185,7 @@ export async function registerUser(name, email, password) {
         console.error("Ошибка регистрации:", error.message);
       
         // Понятные сообщения об ошибках
-          switch (authError.code) {
+          switch (error.code) {
             case "auth/email-already-in-use":
               showError("Этот email уже используется");
               break;
@@ -171,7 +196,7 @@ export async function registerUser(name, email, password) {
               showError("Пароль должен содержать минимум 6 символов");
               break;
             default:
-              showError("Ошибка регистрации: " + authError.message);
+              showError("Ошибка регистрации: " + error.message);
           }
     }
 }
@@ -228,7 +253,7 @@ export async function logoutUser() {
           updateUIForGuest();
         } catch (error) {
           console.error("Ошибка выхода:", error);
-          showError("Ошибка при выходе из системы: ", error.message);
+          showError("Ошибка при выходе из системы: " + error.message);
         }
 }
 
@@ -253,12 +278,11 @@ document
 
   // Кнопка "Войти"
   document.querySelector("#form__signin-btn").addEventListener("click", () => {
-    const name = document.querySelector("#form__auth-name").value;
-    const email = document.querySelector("#form__auth-email").value;
-    const password = document.querySelector("#form__auth-password").value;
+    const email = document.querySelector("#form__auth-email").value.trim();
+    const password = document.querySelector("#form__auth-password").value.trim();
 
-  if (!name || !email || !password) {
-      showError("Введите имя, email и пароль");
+  if (!email || !password) {
+      showError("Введите email и пароль");
       return;
   }
 
@@ -268,11 +292,11 @@ document
   // Кнопка "Зарегистрироваться"
   document.querySelector("#form__signup-btn").addEventListener("click", (e) => {
       e.preventDefault(); // отмена стандартного поведения
-      const name = document.querySelector("#form__auth-name").value;
-      const email = document.querySelector("#form__auth-email").value;
+      const name = document.querySelector("#form__auth-name").value.trim();
+      const email = document.querySelector("#form__auth-email").value.trim();
       const password = document.querySelector("#form__auth-password").value;
 
-  const nameRegex = /^[A-Za-zA-Яа-яЁё\s]{2,}$/;
+  const nameRegex = /^[A-Za-zА-Яа-яЁё\s]{2,}$/;
   if (!nameRegex.test(name)) {
     showError("Введите корректное имя (только буквы, минимум 2 символа)");
     return;
@@ -288,22 +312,37 @@ document
       return;
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showError("Введите корректный email");
+    return;
+  }
+
   registerUser(name, email, password);
   });
 
   // Кнопка "Выйти"
-  logoutAuthBtn.addEventListener("click", (event) => {
+  if (logoutAuthBtn) {
+    logoutAuthBtn.addEventListener("click", (event) => {
       event.preventDefault(); // отмена стандартного поведения
       logoutUser();
-  });
+    });
+  }
 
   // Нажатие Enter в полях формы
   document
       .querySelector("#form__auth-password")
       .addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
-          const email = document.querySelector("#form__auth-email").value;
+
+          const email = document.querySelector("#form__auth-email").value.trim();
           const password = document.querySelector("#form__auth-password").value;
+
+          if (!email || !password) {
+            showError("Введите email и пароль");
+            return;
+          }
+
           loginUser(email, password);
         }
   });

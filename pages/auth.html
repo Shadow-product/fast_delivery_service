@@ -45,7 +45,7 @@
             <li class="header__nav-item">
                 <a href="cart.html" class="header__nav-link">Корзина</a>
             </li>
-            <li class="header__nav-item">
+            <li id="header__admin-item" class="header__nav-item hidden">
                 <a href="admin.html" class="header__nav-link">Админ-панель</a>
             </li>
         </ul>
@@ -90,6 +90,7 @@
                 type="email"
                 id="form__auth-email"
                 placeholder="Ваш email:"
+                autocomplete="email"
             />
 
             <label for="form__auth-password">Пароль (6 символов):</label>
@@ -97,6 +98,7 @@
                 type="password"
                 id="form__auth-password"
                 placeholder="Пароль (минимум 6 символов):"
+                autocomplete="current-password"
             />
 
             <!-- Скрыть сообщение -->
@@ -127,7 +129,7 @@
             <li class="footer__nav-item">
                 <a href="cart.html" class="footer__nav-link">Корзина</a>
             </li>
-            <li class="footer__nav-item">
+            <li id="footer__admin-item" class="footer__nav-item hidden">
                 <a href="admin.html" class="footer__nav-link">Админ-панель</a>
             </li>
         </ul>
