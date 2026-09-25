@@ -75,6 +75,7 @@
       }
 
       .main__page-content {
+        font-size: 16px;
         flex: 1;
       }
 
@@ -109,8 +110,43 @@
         outline: none; /* внешняя рамка */
       }
 
-      .main__output {
+      /* Главная страница меню */
+      .section__output-container {
+        margin: 15px;
+        padding: 10px;
+      }
+
+      .section__output-h3,
+      .section__cart-h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0 0 12px 0;
+        padding: 0;
+      }
+
+      #main__output {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
         color: #000000;
+      }
+
+      #main__output,
+      #div__cart-items {
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: #000000;
+      }
+
+      #main__output h3,
+      #main__output p,
+      #main__output li,
+      #div__cart-items h3,
+      #div__cart-items p,
+      #div__cart-items li {
+        padding: 0;
       }
 
       /* Пагинация на главной странице */
@@ -129,7 +165,7 @@
         width: 40px;
         height: 40px;
         background: #ddd;
-        font-family: "Monsterrat", "sans-serif";
+        font-family: "Montserrat", "sans-serif";
         color: black;
         border-radius: 5px;
       }

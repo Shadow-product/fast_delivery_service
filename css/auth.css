@@ -39,9 +39,9 @@
 
 .section__user-profile {
     font-family: "Inter", "sans-serif";
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
-    background: darkgrey;
+    background: #ddd;
     color: black;
     padding: 15px;
     margin: 20px 0;
@@ -50,7 +50,7 @@
 
 .section__user-profile h3 {
     font-family: "Inter", "sans-serif";
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     padding: 0;
     margin: 0;

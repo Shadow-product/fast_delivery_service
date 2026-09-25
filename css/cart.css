@@ -1,0 +1,98 @@
+/* Контейнер страницы корзины */
+.section__cart-container {
+    margin: 15px;
+    padding: 10px;
+}
+
+/* Заголовок корзины */
+.section__cart-h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+    padding: 0;
+}
+
+/* Блок корзины */
+#div__cart-items {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000000;
+}
+
+/* Текст внутри корзины */
+.div__cart-items h3,
+.div__cart-items p,
+.div__cart-items li {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #000000;
+}
+
+/* Карточка товара */
+.cart__item {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.cart__item h3,
+.cart__item p {
+    margin: 0 0 8px 0;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Итог корзины */
+.cart__total {
+    margin-top: 20px;
+    padding: 15px;
+    border-top: 2px solid #ddd;
+}
+
+.cart__total h3 {
+    margin: 0 0 10px 0;
+}
+
+.cart__total p {
+    margin: 0 0 5px 0;
+}
+
+/* Контейнер кнопок */
+.div__button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Кнопки + и - */
+.button__increase,
+.button__decrease {
+    width: 45px;
+    height: 25px;
+    border-radius: 5px;
+    background: #ddd;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Кнопка удалить */
+.button__remove {
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+    background: #ddd;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}

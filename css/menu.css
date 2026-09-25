@@ -3,8 +3,6 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        padding: 10px;
-        margin: 15px;
         color: #000000;
 }
 
@@ -25,7 +23,7 @@
 .menu__item-rating, .menu__item-reviewcount,
 .menu__item-cookingtime, .menu__item-instock,
 .menu__item-price, .menu__item-createdat {
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 /* Блок меню еды изображение блюда */

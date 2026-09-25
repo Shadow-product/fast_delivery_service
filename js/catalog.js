@@ -1,8 +1,7 @@
 import { getMenuItems } from "./firestore.js";
 import { addToCart } from "./cart.js";
 
-/* Переменные для UI */
-const mainOutput = document.querySelector(".main__output");
+const mainOutput = document.querySelector("#main__output");
 
 document.addEventListener("click", e => {
   const btn = e.target.closest(".menu__item-add");
@@ -33,15 +32,27 @@ let currentPageItems = [];
 
 // Загрузка меню еды (коллекция menuItems Firebase)
 export async function loadMenuItemsClient() {
+
+    mainOutput.textContent =
+      "Загрузка меню еды...";
+
     const snapshot = await getMenuItems(12); // загружаем все товары
+
     allItems = snapshot.docs;
+
     renderMenu(allItems);
 }
 
 /* Первая страница */
 export async function loadFirstPage() { 
+
+  mainOutput.textContent =
+    "Загрузка меню еды...";
+
   const snapshot = await getMenuItems(2); // первая страница 2 блюда
+
   currentPageItems = snapshot.docs;
+
   renderMenu(currentPageItems);
 
   firstVisible = snapshot.docs[0];
@@ -55,6 +66,9 @@ export async function loadNextPage() {
     console.log("Нет данных для следующей страницы");
     return;
   }
+
+  mainOutput.textContent =
+    "Загрузка меню еды...";  
 
   const snapshot = await getMenuItems(2, lastVisible); // следующая страница 2 блюда
 
@@ -90,6 +104,9 @@ export async function loadPrevPage() {
     return;
   }
 
+  mainOutput.textContent =
+    "Загрузка меню еды...";
+
   allItems = prevPage;
   renderMenu(allItems);
 
@@ -110,8 +127,8 @@ export function searchItems(queryText) {
 
 /* Загрузка меню */
 function renderMenu(items) {
-   if (mainOutput) {
-      mainOutput.innerHTML = "Загрузка меню еды...";
+   if (!mainOutput) {
+     return;
    }
 
    try {
@@ -121,6 +138,7 @@ function renderMenu(items) {
    }
 
   mainOutput.innerHTML = "";
+
   items.forEach(doc => {
     const data = doc.data();
 

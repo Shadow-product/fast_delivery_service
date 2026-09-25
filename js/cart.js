@@ -39,10 +39,14 @@ export async function addToCart(itemId, itemData) {
 
 // Загрузка корзины
 async function loadCart(userId) {
-  const cartItemsSection = document.querySelector("#section__cart-items");
+  
+  const cartItemsSection = document.querySelector("#div__cart-items");
   if (!cartItemsSection) {
     return;
-  }
+  } 
+
+  cartItemsSection.textContent = 
+    "Загрузка корзины...";
     
   try {
     const q = query(collection(db, "cartItems"), where("userId", "==", userId));
@@ -54,35 +58,67 @@ async function loadCart(userId) {
     }
 
     cartItemsSection.innerHTML = "";
+
+    let totalPrice = 0;
+    let totalQuantity = 0;
+
     snapshot.forEach(docSnap => {
       const data = docSnap.data();
+
+      const itemPrice = Number(data.price) || 0;
+      const itemQuantity = Number(data.quantity) || 0;
+      const itemTotal = itemPrice * itemQuantity;
+
+      totalPrice += itemPrice * itemQuantity;
+      totalQuantity += itemQuantity;  
+      
       const itemDiv = document.createElement("section");
       itemDiv.className = "cart__item";
-      itemDiv.style.border = "1px solid #ddd";
+      itemDiv.style.border = "2px solid #ddd";
       itemDiv.style.padding = "10px";
       itemDiv.style.margin = "10px 0";
+      itemDiv.style.borderRadius = "5px";
 
       itemDiv.innerHTML = `
         <h3>${data.productName || "Без названия"}</h3>
         <p>Цена: ${data.price} ₸</p>
         <p>Количество: ${data.quantity}</p>
-        <button class="increase-btn" data-id="${docSnap.id}">+</button>
-        <button class="decrease-btn" data-id="${docSnap.id}">-</button>
-        <button class="remove-btn" data-id="${docSnap.id}">Удалить</button>
+        <p>Сумма позиции: ${itemTotal} ₸</p>
+
+        <div class="div__button-container">
+          <button class="button__increase" data-id="${docSnap.id}">+</button>
+          <button class="button__decrease" data-id="${docSnap.id}">-</button>
+          <button class="button__remove" data-id="${docSnap.id}">Удалить</button>
+        </div>  
       `;
 
       cartItemsSection.appendChild(itemDiv);
     });
 
+    // Общий итог суммы в корзине
+    const totalDiv = document.createElement("section");
+    totalDiv.className = "cart__total";
+    totalDiv.style.marginTop = "20px";
+    totalDiv.style.padding = "15px";
+    totalDiv.style.borderTop = "2px solid #ddd";
+
+    totalDiv.innerHTML = `
+      <h3>Итого:</h3>
+      <p>Товаров в корзине: ${totalQuantity}</p>
+      <p>Общая сумма: ${totalPrice} ₸</p>
+    `;
+
+    cartItemsSection.appendChild(totalDiv);
+
     // обработчики кнопок
-    document.querySelectorAll(".remove-btn").forEach(btn => {
+    document.querySelectorAll(".button__remove").forEach(btn => {
       btn.addEventListener("click", async e => {
         await deleteDoc(doc(db, "cartItems", e.target.dataset.id));
         loadCart(userId);
       });
     });
 
-    document.querySelectorAll(".increase-btn").forEach(btn => {
+    document.querySelectorAll(".button__increase").forEach(btn => {
       btn.addEventListener("click", async e => {
         const ref = doc(db, "cartItems", e.target.dataset.id);
         const itemSnap = await getDoc(ref);
@@ -92,7 +128,7 @@ async function loadCart(userId) {
       });
     });
 
-    document.querySelectorAll(".decrease-btn").forEach(btn => {
+    document.querySelectorAll(".button__decrease").forEach(btn => {
       btn.addEventListener("click", async e => {
         const ref = doc(db, "cartItems", e.target.dataset.id);
         const itemSnap = await getDoc(ref);
@@ -114,7 +150,7 @@ async function loadCart(userId) {
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", () => {
-   const cartItemsSection = document.querySelector("#section__cart-items");
+   const cartItemsSection = document.querySelector("#div__cart-items");
    if (!cartItemsSection)  return; 
 
     const auth = getAuth();
