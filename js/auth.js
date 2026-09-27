@@ -21,6 +21,8 @@ const showAuthBtn = document.querySelector("#section__show-auth");
 const logoutAuthBtn = document.querySelector("#section__logout-btn");
 const authContainer = document.querySelector("#form__auth-container");
 const userProfile = document.querySelector("#section__user-profile");
+const headerAdminItem = document.querySelector("#header__admin-item");
+const footerAdminItem = document.querySelector("#footer__admin-item");
 
 /* Показать / скрыть сообщение */
 function showError(message) {
@@ -49,43 +51,68 @@ onAuthStateChanged(auth, async (user) => {
      user ? user.email : "null", 
   );
 
-  if (user) {
+  if (!user) {
     // Пользователь вошёл
-    updateUIForLoggedInUser(user);
+    updateUIForGuest();
+    return;
+  }
 
-    // Загружаем данные профиля из Firestore
-    try {
+  // Загружаем данные профиля из Firestore
+  try {
+
         const userDocRef = doc(db, "users", user.uid);
         const userDocSnap = await getDoc(userDocRef);
 
-        if (userDocSnap.exists()) {
-            const userData = userDocSnap.data();
+        if (!userDocSnap.exists()) {
 
-            const headerAdminItem = document.querySelector("#header__admin-item");
+            await signOut(auth);
 
-            const footerAdminItem = document.querySelector("#footer__admin-item");
+            updateUIForGuest();
 
-            if (userData.role === "admin") {
-
-              if (headerAdminItem) {
-                headerAdminItem.classList.remove("hidden");
-              }
-
-              if (footerAdminItem) {
-                footerAdminItem.classList.remove("hidden");
-              }
-
-            }
-            updateUserProfileUI(user, userData);
+            return;
         }
-      } catch (errorLoadProfile) {
-          console.error("Ошибка загрузки профиля:", errorLoadProfile);
+
+        const userData = userDocSnap.data();
+
+        // Проверка блокировки
+        if (!userData.isActive) {
+            
+            await signOut(auth);
+
+            updateUIForGuest();
+
+            authContainer.classList.remove("hidden");
+
+            showError("Аккаунт заблокирован");
+
+            return;
+        }
+
+        // Только теперь показываем интерфейс
+        updateUIForLoggedInUser(user);
+
+        if (userData.role === "admin") {
+
+            headerAdminItem?.classList.remove(
+              "hidden"
+            );
+
+            footerAdminItem?.classList.remove(
+            "hidden"
+          );
+        }
+      
+        updateUserProfileUI(
+          user,
+          userData
+        );
+
+      } catch (error) {
+          console.error("Ошибка загрузки профиля:", error);
+
+          updateUIForGuest();
       }
-    } else {
-        // Пользователь вышел или не авторизован
-        updateUIForGuest();
-    }
-  });
+});
 
 /* Обновление интерфейса */
 function updateUIForLoggedInUser(user) {
@@ -110,9 +137,6 @@ function updateUIForGuest() {
 
   // Скрываем личный кабинет
   userProfile.classList.add("hidden");
-
-  // Скрываем форму авторизации
-  authContainer.classList.add("hidden");
 
   // Очищаем поля формы
   document.querySelector("#form__auth-name").value = "";
@@ -145,7 +169,7 @@ function updateUserProfileUI(user, userData) {
   }
 
   document.querySelector("#section__user-role").textContent =
-   userData.role || "user";
+   userData.role || "customer";
 }
 
 /* Регистрация пользователя */
@@ -172,7 +196,7 @@ export async function registerUser(name, email, password) {
             bonusNumber: 0,
             address: null,
             createdAt: serverTimestamp(),
-            role: "user",
+            role: "customer",
             lastLogin: serverTimestamp(),
         });
 
@@ -210,6 +234,29 @@ export async function loginUser(email, password) {
             password
         );
         const user = userCredential.user;
+
+        const userDoc = await getDoc(
+          doc(db, "users", user.uid)
+        );
+
+        if (userDoc.exists()) {
+          
+          const userData = userDoc.data();
+
+          if (!userData.isActive) {
+
+            await signOut(auth);
+
+            updateUIForGuest();
+
+            console.log("Пользователь заблокирован");
+
+            showError("Аккаунт заблокирован");
+
+            return;
+          }
+        }
+
         console.log("Пользователь вошёл:", user.email);
 
         // Обновление времени последнего входа
