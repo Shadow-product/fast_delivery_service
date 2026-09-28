@@ -73,9 +73,77 @@
 
         </section>
 
-        <section id="admin-menus">
+        <section id="admin-menu">
 
             <h3>Меню</h3>
+
+            <form id="form__admin-menu" class="form__admin-menu">
+
+                <input
+                    id="input__menu-name"
+                    placeholder="Название блюда"
+                >
+
+                <input
+                    id="input__menu-description"
+                    placeholder="Описание"
+                >
+
+                <input
+                    id="input__menu-category"
+                    placeholder="Категория"
+                >
+
+                <input
+                    id="input__menu-image"
+                    type="url"
+                    placeholder="URL изображения"
+                >
+
+                <input
+                    id="input__menu-ingredients"    
+                    placeholder="Ингредиенты через запятую"
+                >
+
+                <input
+                    id="input__menu-weight"
+                    type="number"
+                    placeholder="Вес"
+                >
+
+                <input
+                    id="input__menu-rating"
+                    type="number"
+                    min="0"
+                    max="5"
+                    step="0.1"
+                    placeholder="Рейтинг"
+                />
+
+                <input 
+                    id="input__menu-reviewCount"
+                    type="number"
+                    min="0"
+                    placeholder="Количество отзывов"
+                />
+
+                <input
+                    id="input__menu-cookingTime"
+                    type="number"
+                    placeholder="Время готовки"
+                >
+
+                <input 
+                    id="input__menu-price"
+                    type="number"
+                    placeholder="Цена"
+                >
+
+            </form>
+
+            <button id="button__create-menu">
+                Добавить блюдо в меню
+            </button>
 
             <div id="admin__menu-list">
                 Загрузка меню еды...
@@ -83,7 +151,7 @@
 
         </section>
 
-        <section id="admin-carts">
+        <section id="admin-cart">
 
             <h3>Корзины пользователей</h3>
 

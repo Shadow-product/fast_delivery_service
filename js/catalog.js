@@ -156,16 +156,16 @@ function renderMenu(items) {
     // Базовая информация
     menuItemsSection.innerHTML = `
         <h3 class="menu__item-h3"><strong>Название:</strong> ${data.name || "Без названия"}</h3>
-        <p class="menu__item-desc"><strong>Описание:</strong> ${data.description}</p>
-        <p class="menu__item-category"><strong>Категория:</strong> ${data.category || "отсутствует категория"}</p>
+        <p class="menu__item-desc"><strong>Описание:</strong> ${data.description || "Описание отсутствует"}</p>
+        <p class="menu__item-category"><strong>Категория:</strong> ${data.category || "Категория отсутствует"}</p>
         <img class="menu__item-img" src="${data.image}" alt="${data.name}">
         <p class="menu__item-price"><strong>Цена:</strong> ${finalPrice} ₸</p>
-        <p class="menu__item-ingredients"><strong>Ингредиенты:</strong></p><ul style="list-style: none; padding-left: 0; margin: 5px 0;"> ${data.ingredients.map(i => `<li>${i}</li>`).join("")}</ul>
-        <p class="menu__item-weight"><strong>Вес:</strong> ${data.weight} г</p>
+        <p class="menu__item-ingredients"><strong>Ингредиенты:</strong></p><ul style="list-style: none; padding-left: 0; margin: 5px 0;"> ${(data.ingredients || []).map(i => `<li>${i}</li>`).join("")}</ul>
+        <p class="menu__item-weight"><strong>Вес:</strong> ${data.weight || 0} г</p>
         <p class="menu__item-restaurantid"><strong>Сервис доставки еды:</strong> ${data.restaurantId || "не указан"}</p>
-        <p class="menu__item-rating"><strong>Рейтинг:</strong> ${data.rating} ⭐</p>
-        <p class="menu__item-reviewcount"><strong>Количество отзывов:</strong> ${data.reviewCount} шт</p>
-        <p class="menu__item-cookingtime"><strong>Время готовки:</strong> ${data.cookingTime} минут</p>
+        <p class="menu__item-rating"><strong>Рейтинг:</strong> ${data.rating || 0} ⭐</p>
+        <p class="menu__item-reviewcount"><strong>Количество отзывов:</strong> ${data.reviewCount || 0} шт</p>
+        <p class="menu__item-cookingtime"><strong>Время готовки:</strong> ${data.cookingTime || 0} минут</p>
         <p class="menu__item-instock"><strong>В наличии:</strong> ${data.inStock ? "Да" : "Нет"}</p>
         <button class="menu__item-add"
             data-id="${doc.id}"

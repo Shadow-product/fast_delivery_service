@@ -4,8 +4,8 @@
 
 #main__admin-controls,
 #admin-users,
-#admin-menus,
-#admin-carts,
+#admin-menu,
+#admin-cart,
 #admin-orders {
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
@@ -17,10 +17,9 @@
 /* Заголовки секций */
 #main__admin-controls h3,
 #admin-users h3,
-#admin-menus h3,
-#admin-carts h3,
-#admin-carts h3,
-#admin-order h3 {
+#admin-menu h3,
+#admin-cart h3,
+#admin-orders h3 {
     margin-bottom: 16px;
     font-family: "Montserrat", sans-serif;
     font-size: 1.25rem;
@@ -49,7 +48,6 @@
     border: 1px solid #dcdcdc;
     border-radius: 12px;
     padding: 16px;
-    transition: 0.2s ease;
 }
 
 .admin-user-card:hover {
@@ -82,15 +80,12 @@
 
     font-size: 0.9rem;
     font-family: "Inter", sans-serif;
-
-    transition: 0.2s ease;
 }
 
 /* Hover */
 
 .admin-user-card button:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
 }
 
 /* Сделать администратором */
@@ -119,6 +114,290 @@
 .button__unblock {
     background-color: green;
     color: #000000;
+}
+
+/* =====================================
+   Меню
+===================================== */
+
+#admin-menu {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 10px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+}
+
+/* Заголовок */
+
+#admin-menu h3 {
+    margin-bottom: 20px;
+
+    font-size: 1.4rem;
+
+    font-weight: 700;
+}
+
+/* =====================================
+   Форма создания блюда
+===================================== */
+
+#form__admin-menu {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+#form__admin-menu input {
+    padding: 12px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+/* Кнопка добавить */
+
+#button__create-menu {
+    width: 100%;
+
+    margin-bottom: 30px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background-color: #198754;
+
+    color: #000000;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#button__create-menu:hover {
+    background-color: #157347;
+}
+
+/* =====================================
+   Список блюд
+===================================== */
+
+#admin__menu-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 24px;
+}
+
+/* =====================================
+   Карточка блюда
+===================================== */
+
+.admin-menu-card {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    background-color: #fafafa;
+
+    border: 1px solid #ececec;
+
+    border-radius: 12px;
+
+}
+
+.admin-menu-card:hover {
+    box-shadow:
+        0 6px 20px rgba(
+            0,
+            0,
+            0,
+            0.08
+        );
+}
+
+/* Название */
+
+.admin-menu-title {
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+/* Фото */
+
+.p__admin-image {
+    width: 100%;
+
+    height: auto;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+}
+
+/* Описание */
+
+.admin-menu-description {
+    padding: 12px;
+
+    background-color: #f5f5f5;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+
+    line-height: 1.5;
+}
+
+/* Характеристики */
+
+.admin-menu-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.admin-menu-info div {
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+
+    background-color: white;
+
+    border: 1px solid #ececec;
+
+    border-radius: 8px;
+}
+
+/* Ингредиенты */
+
+.admin-menu-ingredients {
+    padding: 15px;
+
+    background-color: #f5f5f5;
+
+    border-radius: 8px;
+
+    margin-bottom: 15px;
+}
+
+.admin-menu-ingredients ul {
+    margin-top: 8px;
+
+    padding-left: 20px;
+}
+
+.admin-menu-ingredients li {
+    margin-bottom: 4px;
+}
+
+/* Кнопки карточки */
+
+.admin-menu-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: auto;
+}
+
+.button__edit-menu {
+    flex: 1;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #0d6efd;
+
+    color: #000000;
+
+    cursor: pointer;
+}
+
+.button__delete-menu {
+    flex: 1;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #dc3545;
+
+    color: #000000;
+
+    cursor: pointer;
+}
+
+/* =====================================
+   Изображение отсутствует
+===================================== */
+
+.admin-image-empty {
+    height: 240px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed #ccc;
+
+    border-radius: 10px;
+
+    color: #666;
+}
+
+/* =====================================
+   Планшет
+===================================== */
+
+@media (max-width: 1200px) {
+
+    #admin__menu-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 /*
